@@ -1,0 +1,155 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: Repeat Order for Woocommerce\n"
+"POT-Creation-Date: 2019-03-20 14:34+0100\n"
+"PO-Revision-Date: 2019-03-20 14:32+0100\n"
+"Last-Translator: Frank Neumann-Staude <frank@staude.net>\n"
+"Language-Team: Frank Neumann-Staude <frank@staude.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: repeat-order-for-woocommerce.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: repeat-order-for-woocommerce.php:101
+msgid "Settings"
+msgstr ""
+
+#: repeat-order-for-woocommerce.php:138
+#, php-format
+msgid ""
+"This is an reorder of order #<a href=\"%1s\">%2s</a> <a href=\"#\" class="
+"\"order-preview\" data-order-id=\"%3s\" title=\"Vorschau\"></a>. As a rule, "
+"customers can access items that have already been saved and linked to the "
+"selected delivery address when placing a \"new order\". Please note, "
+"however, that customers may have changed the number and quantity of items "
+"during the ordering process."
+msgstr ""
+
+#: repeat-order-for-woocommerce.php:161
+msgid "Order again"
+msgstr ""
+
+#: repeat-order-for-woocommerce.php:174
+msgctxt "WooCommerce Settngs Tab"
+msgid "Repeat Order"
+msgstr ""
+
+#: repeat-order-for-woocommerce.php:205
+msgid "Repeat Order"
+msgstr ""
+
+#: repeat-order-for-woocommerce.php:211
+msgid "Show link on order list"
+msgstr ""
+
+#: repeat-order-for-woocommerce.php:213
+msgid "If checked, it show the repeat order link on the order list"
+msgstr ""
+
+#: repeat-order-for-woocommerce.php:217
+msgid "Create order note"
+msgstr ""
+
+#: repeat-order-for-woocommerce.php:219
+msgid "If checked, it create an order note with a link to the original order."
+msgstr ""
+
+#: repeat-order-for-woocommerce.php:223
+msgid "Reactivate order again in order detail"
+msgstr ""
+
+#: repeat-order-for-woocommerce.php:225
+msgid ""
+"If you are using a plugin or theme who deactivate the order again link/"
+"button or you have the plugin WooCommerce Germanized (with version 2.0.4 or "
+"older) activated then check this option to reactivate the action."
+msgstr ""
+
+#: repeat-order-for-woocommerce.php:229
+msgid "Your own notice in cart, after an reorder"
+msgstr ""
+
+#: repeat-order-for-woocommerce.php:231
+msgid "Display an own notice in the cart, after the reorder link is clicked."
+msgstr ""
+
+#. translators: %s: order ID
+#: repeat-order-for-woocommerce.php:353
+#, php-format
+msgid "Order #%s"
+msgstr ""
+
+#: repeat-order-for-woocommerce.php:355
+msgid "Close modal panel"
+msgstr ""
+
+#: repeat-order-for-woocommerce.php:363
+msgid "Billing details"
+msgstr ""
+
+#: repeat-order-for-woocommerce.php:367
+msgid "Email"
+msgstr ""
+
+#: repeat-order-for-woocommerce.php:372
+msgid "Phone"
+msgstr ""
+
+#: repeat-order-for-woocommerce.php:377
+msgid "Payment via"
+msgstr ""
+
+#: repeat-order-for-woocommerce.php:383
+msgid "Shipping details"
+msgstr ""
+
+#: repeat-order-for-woocommerce.php:391
+msgid "Shipping method"
+msgstr ""
+
+#: repeat-order-for-woocommerce.php:399
+msgid "Note"
+msgstr ""
+
+#: repeat-order-for-woocommerce.php:413
+msgid "Edit this order"
+msgstr ""
+
+#: repeat-order-for-woocommerce.php:413
+msgid "Edit"
+msgstr ""
+
+#: repeat-order-for-woocommerce.php:431
+msgid "Show original order"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Repeat Order for Woocommerce"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://poly-res.com/plugins/repeat-order-for-woocommerce/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Add an \"order again\" button in Recent Orders list"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "polyres"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://poly-res.com/"
+msgstr ""
