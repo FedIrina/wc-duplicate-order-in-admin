@@ -47,7 +47,8 @@ class ICollectionCustomTypes {
 			add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
 		}
 		add_action( 'init', array($this,'register_supplier_post_type'), 0 );
-		add_action( 'init', array($this,'register_product_wharehouse_taxonomy'), 0 );	 
+		add_action( 'init', array($this,'register_product_wharehouse_taxonomy'), 0 );
+		add_action( 'add_meta_boxes_product', array($this,'add_supplier_meta_box_to_product'), 10 );	 
 	}	
 
 	public function check_woocommerce() {
@@ -122,7 +123,7 @@ class ICollectionCustomTypes {
 	public function register_supplier_post_type() {
 
 		$labels = array(
-			'name'                  => _x( 'uppliers', 'Post Type General Name', 'text_domain' ),
+			'name'                  => _x( 'Suppliers', 'Post Type General Name', 'text_domain' ),
 			'singular_name'         => _x( 'supplier', 'Post Type Singular Name', 'text_domain' ),
 			'menu_name'             => __( 'Suppliers', 'text_domain' ),
 			'name_admin_bar'        => __( 'supplier', 'text_domain' ),
@@ -209,6 +210,14 @@ class ICollectionCustomTypes {
 		);
 		register_taxonomy( 'product_wharehouse', array( 'product' ), $args );
 	}
+
+	public function add_supplier_meta_box_to_product($post){
+		add_meta_box( 'supplier-meta-box', 'Supplier', 'supplier_meta_box_layout', array('product'), 'side',  'high', array('__back_compat_meta_box' => false));
+	}
+
+   public function supplier_meta_box_layout(){
+   		echo "Select a supplier";
+   }
 
 }
 
