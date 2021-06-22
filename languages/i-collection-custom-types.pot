@@ -1,0 +1,59 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Woocommerce Wholesale Prices Calculator (Add-on to "
+"Woocommerce Wholesale Prices Plugin)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-25 09:12+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.5.2; wp-5.7.2\n"
+"X-Domain: wc-wholesale-prices-calculator"
+
+#. Description of the plugin
+msgid ""
+"Automatic calculation of wholesale prices according to established rules"
+msgstr ""
+
+#: wc-wholesale-prices-calculator.php:267
+msgid "Calculate prices"
+msgstr ""
+
+#: wc-wholesale-prices-calculator.php:166
+msgid "Calculation rules"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://ivannikitin.com/"
+msgstr ""
+
+#: wc-wholesale-prices-calculator.php:68
+#, php-format
+msgid ""
+"WC Wholesale Prices Calculator requires %sWoocommerce wholesale prices%s to "
+"be installed & activated!"
+msgstr ""
+
+#: wc-wholesale-prices-calculator.php:59
+#, php-format
+msgid ""
+"WC Wholesale Prices Calculator requires %sWooCommerce%s to be installed & "
+"activated!"
+msgstr ""
+
+#. Name of the plugin
+msgid ""
+"Woocommerce Wholesale Prices Calculator (Add-on to Woocommerce Wholesale "
+"Prices Plugin)"
+msgstr ""
+
+#. Author of the plugin
+msgid "Иван Никитин и партнеры"
+msgstr ""
