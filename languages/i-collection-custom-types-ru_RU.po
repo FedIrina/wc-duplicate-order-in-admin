@@ -1,40 +1,41 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: I-collection Custom Types\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-05 13:23+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: \n"
-"Language: \n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"POT-Creation-Date: 2021-06-24 10:11+0000\n"
+"PO-Revision-Date: 2021-07-05 13:27+0000\n"
+"Last-Translator: Ирина Федорова\n"
+"Language-Team: Русский\n"
+"Language: ru_RU\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10 >= 2 && "
+"n%10<=4 &&(n%100<10||n%100 >= 20)? 1 : 2);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.5.2; wp-5.7.2\n"
+"X-Loco-Version: 2.5.3; wp-5.7.2\n"
 "X-Domain: i-collection-custom-types"
 
 #: i-collection-custom-types.php:134
 msgid "Add New"
-msgstr ""
+msgstr "Добавить новый"
 
 #: i-collection-custom-types.php:187
 msgid "Add New location"
-msgstr ""
+msgstr "Добавить локацию"
 
 #: i-collection-custom-types.php:133
 msgid "Add New Supplier"
-msgstr ""
+msgstr "Добавить нового поставщика"
 
 #: i-collection-custom-types.php:192
 msgid "Add or remove locations"
-msgstr ""
+msgstr "Добавить или удалить локацию"
 
 #. Description of the plugin
+#| msgid "Add Supplier post type and Wharehouse product taxonomy"
 msgid "Add Supplier post type and Location product taxonomy"
-msgstr ""
+msgstr "Добавляет тип записей Поставщик и таксономию товара Локация"
 
 #: i-collection-custom-types.php:183
 msgid "All locations"
@@ -42,11 +43,11 @@ msgstr ""
 
 #: i-collection-custom-types.php:132
 msgid "All Suppliers"
-msgstr ""
+msgstr "Все поставщики"
 
 #: i-collection-custom-types.php:193
 msgid "Choose from the most used"
-msgstr ""
+msgstr "Выберите из наиболее используемых"
 
 #: i-collection-custom-types.php:188
 msgid "Edit location"
@@ -54,15 +55,15 @@ msgstr ""
 
 #: i-collection-custom-types.php:136
 msgid "Edit Supplier"
-msgstr ""
+msgstr "Редактировать поставщика"
 
 #: i-collection-custom-types.php:143
 msgid "Featured Image"
-msgstr ""
+msgstr "Изображение"
 
 #: i-collection-custom-types.php:151
 msgid "Filter suppliers list"
-msgstr ""
+msgstr "Фильтровать список постащиков"
 
 #. Author URI of the plugin
 msgid "https://ivannikitin.com/"
@@ -81,63 +82,63 @@ msgstr ""
 
 #: i-collection-custom-types.php:147
 msgid "Insert into supplier"
-msgstr ""
+msgstr "Вставить в поставщика"
 
 #: i-collection-custom-types.php:181
 msgid "Location"
-msgstr ""
+msgstr "Локация"
 
 #: i-collection-custom-types.php:180 i-collection-custom-types.php:182
 msgid "Locations"
-msgstr ""
+msgstr "Локации"
 
 #: i-collection-custom-types.php:198
 msgid "Locations list"
-msgstr ""
+msgstr "Список локаций"
 
 #: i-collection-custom-types.php:199
 msgid "Locations list navigation"
-msgstr ""
+msgstr "Навигация по списку локаций"
 
 #: i-collection-custom-types.php:186
 msgid "New location"
-msgstr ""
+msgstr "Новая локация"
 
 #: i-collection-custom-types.php:135
 msgid "New Supplier"
-msgstr ""
+msgstr "Новый поставщик"
 
 #: i-collection-custom-types.php:197
 msgid "No location"
-msgstr ""
+msgstr "Локация не указана"
 
 #: i-collection-custom-types.php:196
 msgid "Not Found"
-msgstr ""
+msgstr "Не найдено"
 
 #: i-collection-custom-types.php:141
 msgid "Not found"
-msgstr ""
+msgstr "Не найдено"
 
 #: i-collection-custom-types.php:142
 msgid "Not found in Trash"
-msgstr ""
+msgstr "В корзине не найдено"
 
 #: i-collection-custom-types.php:184
 msgid "Parent location"
-msgstr ""
+msgstr "Родительская локация"
 
 #: i-collection-custom-types.php:185
 msgid "Parent location:"
-msgstr ""
+msgstr "Родительская локация:"
 
 #: i-collection-custom-types.php:131
 msgid "Parent Supplier:"
-msgstr ""
+msgstr "Родительский поставщик:"
 
 #: i-collection-custom-types.php:194
 msgid "Popular location"
-msgstr ""
+msgstr "Популярная локация"
 
 #: i-collection-custom-types.php:125
 msgctxt "Post Type General Name"
@@ -156,79 +157,79 @@ msgstr ""
 
 #: i-collection-custom-types.php:155
 msgid "Product supplier"
-msgstr ""
+msgstr "Поставщик товаров"
 
 #: i-collection-custom-types.php:145
 msgid "Remove featured image"
-msgstr ""
+msgstr "Удалить изображение"
 
 #: i-collection-custom-types.php:195
 msgid "Search locations"
-msgstr ""
+msgstr "Поиск локации"
 
 #: i-collection-custom-types.php:140
 msgid "Search Supplier"
-msgstr ""
+msgstr "Поиск поставщика"
 
 #: i-collection-custom-types.php:191
 msgid "Separate locations with commas"
-msgstr ""
+msgstr "Отделяйте локации запятыми"
 
 #: i-collection-custom-types.php:144
 msgid "Set featured image"
-msgstr ""
+msgstr "Установить изображение"
 
 #: i-collection-custom-types.php:154 i-collection-custom-types.php:215
 msgid "Supplier"
-msgstr ""
+msgstr "Поставщик"
 
 #: i-collection-custom-types.php:128
 msgid "supplier"
-msgstr ""
+msgstr "поставщик"
 
 #: i-collection-custom-types.php:129
 msgid "Supplier Archives"
-msgstr ""
+msgstr "Архив записей типа Поставщик"
 
 #: i-collection-custom-types.php:130
 msgid "Supplier Attributes"
-msgstr ""
+msgstr "Атрибуты Поставщика"
 
 #: i-collection-custom-types.php:149
 msgid "Suppliers list"
-msgstr ""
+msgstr "Список поставщиков"
 
 #: i-collection-custom-types.php:150
 msgid "Suppliers list navigation"
-msgstr ""
+msgstr "Навигация по списку поставщиков"
 
 #: i-collection-custom-types.php:189
 msgid "Update location"
-msgstr ""
+msgstr "Обновить локацию"
 
 #: i-collection-custom-types.php:137
 msgid "Update Supplier"
-msgstr ""
+msgstr "Обновить поставщика"
 
 #: i-collection-custom-types.php:148
 msgid "Uploaded to this supplier"
-msgstr ""
+msgstr "Загружено для данного поставщика"
 
 #: i-collection-custom-types.php:146
 msgid "Use as featured image"
-msgstr ""
+msgstr "Использовать как основное изображение"
 
 #: i-collection-custom-types.php:190
 msgid "View location"
-msgstr ""
+msgstr "Просмотр локации"
 
 #: i-collection-custom-types.php:138
 msgid "View Supplier"
-msgstr ""
+msgstr "Просмотр поставщика"
 
 #: i-collection-custom-types.php:139
 msgid "View Suppliers"
-msgstr ""
+msgstr "Просмотр поставщиков"
 
 #. Author of the plugin
 msgid "Иван Никитин и партнеры"

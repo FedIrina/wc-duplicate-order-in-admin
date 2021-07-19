@@ -2,7 +2,7 @@
 
 /**
  * Plugin Name: I-collection Custom Types
- * Description: Add Supplier post type and Wharehouse product taxonomy
+ * Description: Add Supplier post type and Location product taxonomy
  * Version: 1.0.0
  * Author: Иван Никитин и партнеры
  * Author URI: https://ivannikitin.com/
@@ -24,8 +24,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-define( 'WCDO_VERSION', '1.0.0' );
-define ('TEXT_DOMAIN',TEXT_DOMAIN);
+define( 'ICCT_VERSION', '1.0.0' );
+define ('TEXT_DOMAIN','i-collection-custom-types');
 
 class ICollectionCustomTypes {
 
@@ -39,21 +39,21 @@ class ICollectionCustomTypes {
 	public function __construct() {
 		$plugin = plugin_basename( __FILE__ );
 		add_action( 'plugins_loaded', array( $this, 'check_woocommerce' ), 9 );
+		add_action( 'plugins_loaded', array( $this, 'load_textdomain1') );
 		if( is_admin() ) {
-			add_action( 'init', array( $this, 'reactivate_action'), 9999 );
-			add_action( 'init', array( $this, 'load_plugin_textdomain') );
 			register_activation_hook( __FILE__, array( 'ICollectionCustomTypes', 'install' ) );
 			register_uninstall_hook( __FILE__, array( 'ICollectionCustomTypes', 'uninstall' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
 		}
 		add_action( 'init', array($this,'register_supplier_post_type'), 0 );
-		add_action( 'init', array($this,'register_product_wharehouse_taxonomy'), 0 );
-		add_action( 'add_meta_boxes_product', array($this,'add_supplier_meta_box_to_product'), 10 );	 
+		add_action( 'init', array($this,'register_product_location_taxonomy'), 0 );
+		add_action( 'add_meta_boxes_product', array($this,'add_supplier_meta_box_to_product'), 10 );
+		add_action( 'save_post', array($this,'i_collection_save_postdata') );	 
 	}	
 
 	public function check_woocommerce() {
 		if ( $this->is_woocommerce_activated() === false ) {
-			$error = sprintf( __( 'I-collection Custom Types requires %sWooCommerce%s to be installed & activated!' , TEXT_DOMAIN ), '<a href="http://wordpress.org/extend/plugins/woocommerce/">', '</a>' );
+			$error = sprintf( __( 'I-collection Custom Types requires %sWooCommerce%s to be installed & activated!' , 'i-collection-custom-types' ), '<a href="http://wordpress.org/extend/plugins/woocommerce/">', '</a>' );
 			$message = '<div class="error"><p>' . $error . '</p></div>';
 			echo $message;
 			return;
@@ -78,13 +78,11 @@ class ICollectionCustomTypes {
 	 * @access  public
 	 * @filter plugin_locale
 	 */
-	public function load_plugin_textdomain() {
+	public function load_textdomain1() {
 		$locale = is_admin() && function_exists( 'get_user_locale' ) ? get_user_locale() : get_locale();
-		$locale = apply_filters( 'plugin_locale', $locale, TEXT_DOMAIN );
+		$locale = apply_filters( 'plugin_locale', $locale, 'i-collection-custom-types' );
 
-		load_textdomain( TEXT_DOMAIN, trailingslashit( WP_LANG_DIR ) . 'i-collection-custom-types/i-collection-custom-types-' . $locale . '.mo' );
-		load_plugin_textdomain( TEXT_DOMAIN, false, plugin_basename( dirname( __FILE__ ) ) . '/languages/' );
-		wp_set_script_translations( 'i-collection-custom-types-script', TEXT_DOMAIN );
+		load_plugin_textdomain( 'i-collection-custom-types', false, plugin_basename( dirname( __FILE__ ) ) . '/languages/' );
 	}
 
 	/**
@@ -114,8 +112,9 @@ class ICollectionCustomTypes {
 	 * @access  public
 	 */
 	public function admin_scripts() {
-		wp_enqueue_script( 'i-collection-custom-types-script', plugins_url( '/js/i-collection-custom-types.js' , __FILE__ ), array( 'jquery'), WCDO_VERSION, true );
+		wp_enqueue_script( 'i-collection-custom-types-script', plugins_url( '/js/i-collection-custom-types.js' , __FILE__ ), array( 'jquery'), ICCT_VERSION, true );
 		wp_enqueue_style( 'i-collection-custom-types_admin_styles', plugins_url('admin-styles.css', __FILE__) );
+		wp_set_script_translations( 'i-collection-custom-types-script', 'i-collection-custom-types' );
 
     }
 
@@ -123,37 +122,37 @@ class ICollectionCustomTypes {
 	public function register_supplier_post_type() {
 
 		$labels = array(
-			'name'                  => _x( 'Suppliers', 'Post Type General Name', 'text_domain' ),
-			'singular_name'         => _x( 'supplier', 'Post Type Singular Name', 'text_domain' ),
-			'menu_name'             => __( 'Suppliers', 'text_domain' ),
-			'name_admin_bar'        => __( 'supplier', 'text_domain' ),
-			'archives'              => __( 'Supplier Archives', 'text_domain' ),
-			'attributes'            => __( 'Supplier Attributes', 'text_domain' ),
-			'parent_supplier_colon'     => __( 'Parent Supplier:', 'text_domain' ),
-			'all_suppliers'             => __( 'All Suppliers', 'text_domain' ),
-			'add_new_supplier'          => __( 'Add New Supplier', 'text_domain' ),
-			'add_new'               => __( 'Add New', 'text_domain' ),
-			'new_supplier'              => __( 'New Supplier', 'text_domain' ),
-			'edit_supplier'             => __( 'Edit Supplier', 'text_domain' ),
-			'update_supplier'           => __( 'Update Supplier', 'text_domain' ),
-			'view_supplier'             => __( 'View Supplier', 'text_domain' ),
-			'view_suppliers'            => __( 'View Suppliers', 'text_domain' ),
-			'search_suppliers'          => __( 'Search Supplier', 'text_domain' ),
-			'not_found'             => __( 'Not found', 'text_domain' ),
-			'not_found_in_trash'    => __( 'Not found in Trash', 'text_domain' ),
-			'featured_image'        => __( 'Featured Image', 'text_domain' ),
-			'set_featured_image'    => __( 'Set featured image', 'text_domain' ),
-			'remove_featured_image' => __( 'Remove featured image', 'text_domain' ),
-			'use_featured_image'    => __( 'Use as featured image', 'text_domain' ),
-			'insert_into_supplier'      => __( 'Insert into supplier', 'text_domain' ),
-			'uploaded_to_this_supplier' => __( 'Uploaded to this supplier', 'text_domain' ),
-			'suppliers_list'            => __( 'Suppliers list', 'text_domain' ),
-			'suppliers_list_navigation' => __( 'Suppliers list navigation', 'text_domain' ),
-			'filter_suppliers_list'     => __( 'Filter suppliers list', 'text_domain' ),
+			'name'                  => _x( 'Suppliers', 'Post Type General Name', 'i-collection-custom-types' ),
+			'singular_name'         => _x( 'supplier', 'Post Type Singular Name', 'i-collection-custom-types' ),
+			'menu_name'             => _x( 'Suppliers', 'Post Type Menu Name','i-collection-custom-types' ),
+			'name_admin_bar'        => __( 'supplier', 'i-collection-custom-types' ),
+			'archives'              => __( 'Supplier Archives', 'i-collection-custom-types' ),
+			'attributes'            => __( 'Supplier Attributes', 'i-collection-custom-types' ),
+			'parent_supplier_colon'     => __( 'Parent Supplier:', 'i-collection-custom-types' ),
+			'all_suppliers'             => __( 'All Suppliers', 'i-collection-custom-types' ),
+			'add_new_supplier'          => __( 'Add New Supplier', 'i-collection-custom-types' ),
+			'add_new'               => __( 'Add New', 'i-collection-custom-types' ),
+			'new_supplier'              => __( 'New Supplier', 'i-collection-custom-types' ),
+			'edit_supplier'             => __( 'Edit Supplier', 'i-collection-custom-types' ),
+			'update_supplier'           => __( 'Update Supplier', 'i-collection-custom-types' ),
+			'view_supplier'             => __( 'View Supplier', 'i-collection-custom-types' ),
+			'view_suppliers'            => __( 'View Suppliers', 'i-collection-custom-types' ),
+			'search_suppliers'          => __( 'Search Supplier', 'i-collection-custom-types' ),
+			'not_found'             => __( 'Not found', 'i-collection-custom-types' ),
+			'not_found_in_trash'    => __( 'Not found in Trash', 'i-collection-custom-types' ),
+			'featured_image'        => __( 'Featured Image', 'i-collection-custom-types' ),
+			'set_featured_image'    => __( 'Set featured image', 'i-collection-custom-types' ),
+			'remove_featured_image' => __( 'Remove featured image', 'i-collection-custom-types' ),
+			'use_featured_image'    => __( 'Use as featured image', 'i-collection-custom-types' ),
+			'insert_into_supplier'      => __( 'Insert into supplier', 'i-collection-custom-types' ),
+			'uploaded_to_this_supplier' => __( 'Uploaded to this supplier', 'i-collection-custom-types' ),
+			'suppliers_list'            => __( 'Suppliers list', 'i-collection-custom-types' ),
+			'suppliers_list_navigation' => __( 'Suppliers list navigation', 'i-collection-custom-types' ),
+			'filter_suppliers_list'     => __( 'Filter suppliers list', 'i-collection-custom-types' ),
 		);
 		$args = array(
-			'label'                 => __( 'Supplier', 'text_domain' ),
-			'description'           => __( 'Product supplier', 'text_domain' ),
+			'label'                 => __( 'Supplier', 'i-collection-custom-types' ),
+			'description'           => __( 'Product supplier', 'i-collection-custom-types' ),
 			'labels'                => $labels,
 			'supports'              => array( 'title', 'editor' ),
 			'taxonomies'            => array( 'supplier_cat' ),
@@ -161,7 +160,7 @@ class ICollectionCustomTypes {
 			'public'                => true,
 			'show_ui'               => true,
 			'show_in_menu'          => true,
-			'menu_position'         => 5,
+			'menu_position'         => 17,
 			'show_in_admin_bar'     => true,
 			'show_in_nav_menus'     => true,
 			'can_export'            => true,
@@ -175,49 +174,101 @@ class ICollectionCustomTypes {
 	}
 
 	// Register Custom Taxonomy
-	public function register_product_wharehouse_taxonomy() {
+	public function register_product_location_taxonomy() {
 
 		$labels = array(
-			'name'                       => _x( 'Wharehouses', 'Taxonomy General Name', 'TEXT_DOMAIN' ),
-			'singular_name'              => _x( 'Wharehouse', 'Taxonomy Singular Name', 'TEXT_DOMAIN' ),
-			'menu_name'                  => __( 'Wharehouse', 'TEXT_DOMAIN' ),
-			'all_items'                  => __( 'All wharehouses', 'TEXT_DOMAIN' ),
-			'parent_item'                => __( 'Parent wharehouse', 'TEXT_DOMAIN' ),
-			'parent_item_colon'          => __( 'Parent wharehouse:', 'TEXT_DOMAIN' ),
-			'new_item_name'              => __( 'New wharehouse', 'TEXT_DOMAIN' ),
-			'add_new_item'               => __( 'Add New wharehouse', 'TEXT_DOMAIN' ),
-			'edit_item'                  => __( 'Edit wharehouse', 'TEXT_DOMAIN' ),
-			'update_item'                => __( 'Update wharehouse', 'TEXT_DOMAIN' ),
-			'view_item'                  => __( 'View wharehouse', 'TEXT_DOMAIN' ),
-			'separate_items_with_commas' => __( 'Separate wharehouses with commas', 'TEXT_DOMAIN' ),
-			'add_or_remove_items'        => __( 'Add or remove wharehouses', 'TEXT_DOMAIN' ),
-			'choose_from_most_used'      => __( 'Choose from the most used', 'TEXT_DOMAIN' ),
-			'popular_items'              => __( 'Popular wharehouse', 'TEXT_DOMAIN' ),
-			'search_items'               => __( 'Search wharehouses', 'TEXT_DOMAIN' ),
-			'not_found'                  => __( 'Not Found', 'TEXT_DOMAIN' ),
-			'no_terms'                   => __( 'No wharehouse', 'TEXT_DOMAIN' ),
-			'items_list'                 => __( 'Wharehouses list', 'TEXT_DOMAIN' ),
-			'items_list_navigation'      => __( 'Wharehouses list navigation', 'TEXT_DOMAIN' ),
+			'name'                       => __( 'Locations', 'i-collection-custom-types' ),
+			'singular_name'              => __( 'Location', 'i-collection-custom-types' ),
+			'menu_name'                  => __( 'Locations', 'i-collection-custom-types' ),
+			'all_items'                  => __( 'All locations', 'i-collection-custom-types' ),
+			'parent_item'                => __( 'Parent location', 'i-collection-custom-types' ),
+			'parent_item_colon'          => __( 'Parent location:', 'i-collection-custom-types' ),
+			'new_item_name'              => __( 'New location', 'i-collection-custom-types' ),
+			'add_new_item'               => __( 'Add New location', 'i-collection-custom-types' ),
+			'edit_item'                  => __( 'Edit location', 'i-collection-custom-types' ),
+			'update_item'                => __( 'Update location', 'i-collection-custom-types' ),
+			'view_item'                  => __( 'View location', 'i-collection-custom-types' ),
+			'separate_items_with_commas' => __( 'Separate locations with commas', 'i-collection-custom-types' ),
+			'add_or_remove_items'        => __( 'Add or remove locations', 'i-collection-custom-types' ),
+			'choose_from_most_used'      => __( 'Choose from the most used', 'i-collection-custom-types' ),
+			'popular_items'              => __( 'Popular location', 'i-collection-custom-types' ),
+			'search_items'               => __( 'Search locations', 'i-collection-custom-types' ),
+			'not_found'                  => __( 'Not Found', 'i-collection-custom-types' ),
+			'no_terms'                   => __( 'No location', 'i-collection-custom-types' ),
+			'items_list'                 => __( 'Locations list', 'i-collection-custom-types' ),
+			'items_list_navigation'      => __( 'Locations list navigation', 'i-collection-custom-types' ),
 		);
 		$args = array(
 			'labels'                     => $labels,
-			'hierarchical'               => false,
+			'hierarchical'               => true,
 			'public'                     => true,
 			'show_ui'                    => true,
 			'show_admin_column'          => true,
 			'show_in_nav_menus'          => true,
 			'show_tagcloud'              => true,
+			'meta_box_cb'				=> 'post_categories_meta_box'
 		);
-		register_taxonomy( 'product_wharehouse', array( 'product' ), $args );
+		register_taxonomy( 'product_location', array( 'product' ), $args );
 	}
 
 	public function add_supplier_meta_box_to_product($post){
-		add_meta_box( 'supplier-meta-box', 'Supplier', 'supplier_meta_box_layout', array('product'), 'side',  'high', array('__back_compat_meta_box' => false));
+		add_meta_box( 'supplier-meta-box', __('Supplier','i-collection-custom-types'), array( $this,'supplier_meta_box_layout'), array('product'), 'side',  'core');
 	}
 
-   public function supplier_meta_box_layout(){
-   		echo "Select a supplier";
-   }
+
+   	public function supplier_meta_box_layout($post, $meta){
+	   	$screens = $meta['args'];
+
+		// Используем nonce для верификации
+		wp_nonce_field( plugin_basename(__FILE__), 'i-collection-custom-type' );
+
+		// значение поля
+		$value = get_post_meta( $post->ID, '_supplier', true );
+
+		// Поля формы для введения данных
+		$suppliers = get_posts(
+			array(
+				'post_type'   => 'supplier',
+				'numberposts' => -1,
+			));
+		if (count($suppliers)){
+			echo '<select name="_supplier" style="width:100%;">';
+			foreach( $suppliers as $supplier_item ){
+				if ($value==$supplier_item->ID){
+					$selected='selected="selected"';
+				} else {
+					$selected="";
+				}
+			    echo '<option '.$selected.' value="'.$supplier_item->ID.'">'.$supplier_item->post_title.'</option>';
+			}
+			echo '</select>';
+		}
+   	}
+
+	public function i_collection_save_postdata( $post_id ) {
+		// Убедимся что поле установлено.
+		if ( ! isset( $_POST['_supplier'] ) )
+			return;
+
+		// проверяем nonce нашей страницы, потому что save_post может быть вызван с другого места.
+		if ( ! wp_verify_nonce( $_POST['i-collection-custom-type'], plugin_basename(__FILE__) ) )
+			return;
+
+		// если это автосохранение ничего не делаем
+		if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) 
+			return;
+
+		// проверяем права юзера
+		if( ! current_user_can( 'edit_post', $post_id ) )
+			return;
+
+		// Все ОК. Теперь, нужно найти и сохранить данные
+		// Очищаем значение поля input.
+		$my_data = sanitize_text_field( $_POST['_supplier'] );
+
+		// Обновляем данные в базе данных.
+		update_post_meta( $post_id, '_supplier', $my_data );
+	}
 
 }
 

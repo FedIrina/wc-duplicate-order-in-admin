@@ -1,0 +1,17 @@
+
+#product_locationdiv #product_location-tabs {
+	display: none;
+}
+#product_locationchecklist {
+	display: flex;
+	flex-wrap: wrap;
+
+}
+
+#product_locationchecklist li {
+	margin-right: 10px;
+}
+
+#product_location-adder {
+	display: none;
+}
